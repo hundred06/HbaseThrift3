@@ -1,12 +1,12 @@
 package com.transwarp.main;
-import	java.nio.file.Files;
+
 import com.transwarp.hdfs.HDFSOperation;
 import org.apache.hadoop.fs.FileStatus;
 
-import	java.io.InputStream;
-import	java.io.BufferedInputStream;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 public class StoreHDFSFile {
