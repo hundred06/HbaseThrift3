@@ -10,7 +10,8 @@ import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
 
 import javax.security.sasl.SaslException;
-import java.io.*;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,12 +21,12 @@ import java.util.Map;
 public class InsertDataWithImg {
     private static Logger logger = LogManager.getLogger(InsertDataWithImg.class);
     private  InceptorClient client = new InceptorClient();
-    private String base_path = "C:\\Users\\jinyupeng\\Desktop\\徐家汇街道楼宇网格（专业）力量名单\\更新数据-11-06\\图片\\漕河泾";
+    private String base_path = "C:\\Users\\jinyupeng\\Desktop\\徐家汇街道楼宇网格（专业）力量名单\\更新数据-11-20\\图片\\";
     private String guardian_access_token = "ghRCDMu8XKV5svXj6qWz-CH11409.TDH";
     private String httpfsPort = "30825";
     private String clusterIP = "31.0.141.193";
     private int hbasePort = 32672;
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String jdbcUrl = "jdbc:hive2://31.0.141.193:31979/xhrt_fjg;guardianToken=ghRCDMu8XKV5svXj6qWz-CH11409.TDH";
         String user = "";
         String password = "";
@@ -36,17 +37,6 @@ public class InsertDataWithImg {
 
         InsertDataWithImg insert = new InsertDataWithImg();
         insert.start(args);
-
-//         上传网格力量图片
-
-        //上传历史建筑
-//        insert.loadDataFromLocal_to_thrift(jdbcUrl, clusterIP, clusterNodePort, user, password,
-//                "xh_fangguanju.jianzhuzhuangshi_binary",
-//                "xh_fangguanju.jianzhuzhuangshi_binary", "binary_data",
-//                "id", "D:\\fuangguan\\", "/data/fangguan/");
-
-
-
     }
     public void init(){
 
@@ -55,8 +45,8 @@ public class InsertDataWithImg {
 
 //        loadPicFromLocal_to_thrift(clusterIP,  hbasePort,
 //                "grid_xh.grid_list_xh_img1");
-        loadPicFromLocal_to_thrift(clusterIP, hbasePort, "C:\\Users\\jinyupeng\\Desktop\\pic\\",
-                "grid_xh.grid_list_xh_img_11_06");
+        loadPicFromLocal_to_thrift(clusterIP, hbasePort, "C:\\Users\\jinyupeng\\Desktop\\徐家汇街道楼宇网格（专业）力量名单\\更新数据-11-20\\图片\\",
+                "grid_xh.grid_list_xh_img_11_20");
     }
 
     public String getFilePath(String base_path, HashMap oneRow, String fenge){
@@ -105,7 +95,6 @@ public class InsertDataWithImg {
             return;
         }
         for(int i = 0; i < totalData.size(); i++){
-
             HashMap oneRow = (HashMap) totalData.get(i);
             String row_key = (String) oneRow.get(key);
             String name = (String) oneRow.get("name");

@@ -1,13 +1,12 @@
 package com.transwarp.hyberbase;
-import java.util.ArrayList;
-import java.util.Base64;
-//import org.jruby.RubyBoolean;
 
+import javax.imageio.stream.FileImageInputStream;
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.ByteBuffer;
-import java.net.HttpURLConnection;
-import javax.imageio.stream.FileImageInputStream;
+import java.util.ArrayList;
+import java.util.Base64;
 
 public class FileUtil {
     public static ArrayList<File> getListFiles(Object obj) {
@@ -42,7 +41,6 @@ public class FileUtil {
 
     public static byte[] localImage2bytes_base64(String path){
         byte[] data = localImage2byte(path);
-//        final Base64.Decoder decoder = Base64.getDecoder();
         final Base64.Encoder encoder = Base64.getEncoder();
         return encoder.encode(data);
     }
